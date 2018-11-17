@@ -11,7 +11,7 @@ class Database():
         self.database = pd.read_csv(self.database_address)
         self.database_query = DatabaseQuery(self.database)
 
-    def __iter__():
+    def __iter__(self):
         return self.database_query.__iter__()
 
     def __getitem__(self, key):
