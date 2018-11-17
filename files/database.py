@@ -17,6 +17,11 @@ class DatabaseQuery():
         for serial in dataframe:
             self.query.append(DataRow(serial))
 
+    def __getitem__(self, key):
+        return self.query[key]
+
+    def __setitem__(self, key, value):
+        return self.query[key] = value
 
 class DataRow():
     
