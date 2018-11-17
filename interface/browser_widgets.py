@@ -22,6 +22,7 @@ class RightBrowser(Widget):
         super().__init__() 
         self.interface = interface
         self.vbox = glooey.VBox()
+        self.vbox.add(LabelWhite("Hello world"))
         self.vbox.add(glooey.Placeholder())
         self.vbox.add(glooey.Placeholder())
         self._attach_child(self.vbox)
