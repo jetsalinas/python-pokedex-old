@@ -10,6 +10,14 @@ class Database():
     def load(self):
         self.database = pd.read_csv(self.database_address)
 
+class DatabaseQuery():
+    
+    def __init__(self, dataframe):
+        self.query = []
+        for serial in dataframe:
+            self.query.append(DataRow(serial))
+
+
 class DataRow():
     
     def __init__(self, serial):
