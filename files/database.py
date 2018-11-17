@@ -1,42 +1,11 @@
 import csv
 import pandas as pd
 
-class Database():
-
-    def __init__(self, database="resources/data_test.csv"):
-        self.database_address = database
-        self.load()
-
-    def load(self):
-        self.database = pd.read_csv(self.database_address)
-        self.database_query = DatabaseQuery(self.database)
-
-    def __iter__(self):
-        return self.database_query.__iter__()
-
-    def __getitem__(self, key):
-        return self.database_query[key]
-
-    def __setitem__(self, key, value):
-        self.database_query[key] = value
-
-    def get_by_name(self, name):
-        query = self.database.loc[self.database.name == name]
-        return DatabaseQuery(self.database.loc[self.database.name == name]) if not query.empty else None
-
-    def get_by_index(self, key):
-        return self.database_query[key]
-
-    def get_indices_header(self):
-        return [x for x in range(len(self.database_query))]
-
-    def get_names_header(self):
-        return [row.name for row in self.database_query]
-
 class DatabaseQuery():
     
     def __init__(self, dataframe):
         self.query = []
+        self.dataframe = dataframe
         for index, row in dataframe.iterrows():
             data = []
             for col in row:
@@ -54,6 +23,13 @@ class DatabaseQuery():
 
     def __len__(self):
         return len(self.query)
+
+    def filter_by_name(self, name):
+        data_query = self.dataframe.loc[self.dataframe.name == name]
+        return DatabaseQuery(data_query)
+
+    def get_by_index(self, key):
+        return self.dataframe[key]
 
 class DataRow():
     
@@ -100,3 +76,16 @@ class DataRow():
         self.weight_kg = serial[39]
         self.generation = serial[40]
         self.is_legendary = serial[41]
+
+class Database(DatabaseQuery):
+
+    def __init__(self, database="resources/data_test.csv"):
+        self.database_address = database
+        self.dataframe = pd.read_csv(self.database_address)
+        super().__init__(self.dataframe)
+
+    def get_indices_header(self):
+        return [x for x in range(len(self))]
+
+    def get_names_header(self):
+        return [row.name for row in self]
