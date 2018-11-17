@@ -32,6 +32,14 @@ class DatabaseQuery():
         data_query = self.dataframe.loc[(self.dataframe.type1 == pokemon_type.lower()) | (self.dataframe.type2 == pokemon_type.lower())]
         return DatabaseQuery(data_query)
 
+    def filter_by_legendary(self, value):
+        if value == True:
+            query = 1
+        else:
+            query = 0
+            data_query = self.dataframe.loc[(self.dataframe.is_legendary == query)]
+            return DatabaseQuery(data_query)
+
     def get_index(self, key):
         return self.dataframe[key]
 
