@@ -28,7 +28,11 @@ class DatabaseQuery():
         data_query = self.dataframe.loc[self.dataframe.name == name]
         return DatabaseQuery(data_query)
 
-    def get_by_index(self, key):
+    def filter_by_type(self, pokemon_type):
+        data_query = self.dataframe.loc[(self.dataframe.type1 == pokemon_type.lower()) | (self.dataframe.type2 == pokemon_type.lower())]
+        return DatabaseQuery(data_query)
+
+    def get_index(self, key):
         return self.dataframe[key]
 
 class DataRow():
