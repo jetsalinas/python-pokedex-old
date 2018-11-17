@@ -10,18 +10,27 @@ class Database():
     def load(self):
         self.database = pd.read_csv(self.database_address)
 
+    def __iter__():
+        return DatabaseQuery(self.database).__iter__()
+
 class DatabaseQuery():
     
     def __init__(self, dataframe):
         self.query = []
-        for serial in dataframe:
-            self.query.append(DataRow(serial))
+        for index, row in dataframe.iterrows():
+            data = []
+            for col in row:
+                data.append(col)
+            self.query.append(DataRow(data))
 
     def __getitem__(self, key):
         return self.query[key]
 
     def __setitem__(self, key, value):
-        return self.query[key] = value
+        self.query[key] = value
+
+    def __iter__(self):
+        return iter(self.query)
 
 class DataRow():
     
