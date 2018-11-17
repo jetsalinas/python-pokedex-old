@@ -8,10 +8,19 @@ class Database():
         self.load()
 
     def load(self):
-        self.database = pd.read_csv(self.database_address)
+        self.database = DatabaseQuery(pd.read_csv(self.database_address))
 
     def __iter__():
-        return DatabaseQuery(self.database).__iter__()
+        return self.database.__iter__()
+
+    def __getitem__(self, key):
+        return self.database[key]
+
+    def __setitem__(self, key, value):
+        self.database[key] = value
+
+    def get_by_name():
+        pass
 
 class DatabaseQuery():
     
