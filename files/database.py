@@ -20,6 +20,13 @@ class Database():
     def __setitem__(self, key, value):
         self.database_query[key] = value
 
+    def get_by_name(self, name):
+        query = self.database.loc[self.database.name == name]
+        return DatabaseQuery(self.database.loc[self.database.name == name]) if not query.empty else None
+
+    def get_by_index(self, key):
+        return self.database_query[key]
+
 class DatabaseQuery():
     
     def __init__(self, dataframe):
