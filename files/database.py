@@ -27,7 +27,11 @@ class Database():
     def get_by_index(self, key):
         return self.database_query[key]
 
-    def get_indices()
+    def get_indices_header(self):
+        return [x for x in range(len(self.database_query))]
+
+    def get_names_header(self):
+        return [row.name for row in self.database_query]
 
 class DatabaseQuery():
     
