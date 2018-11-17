@@ -27,6 +27,8 @@ class Database():
     def get_by_index(self, key):
         return self.database_query[key]
 
+    def get_indices()
+
 class DatabaseQuery():
     
     def __init__(self, dataframe):
@@ -45,6 +47,9 @@ class DatabaseQuery():
 
     def __iter__(self):
         return iter(self.query)
+
+    def __len__(self):
+        return len(self.query)
 
 class DataRow():
     
