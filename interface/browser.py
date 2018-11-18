@@ -1,6 +1,6 @@
 import glooey
 
-from .browser_widgets import LeftBrowser, RightBrowser
+from .browser_widgets import LeftBrowserWrapper, RightBrowserWrapper
 from .widgets import Widget
 
 class Browser(Widget):
@@ -10,6 +10,6 @@ class Browser(Widget):
         self.interface = interface
 
         self.hbox = glooey.HBox(0)
-        self.hbox.add(LeftBrowser(self.interface))
-        self.hbox.add(RightBrowser(self.interface))
+        self.hbox.add(LeftBrowserWrapper(self.interface))
+        self.hbox.add(RightBrowserWrapper(self.interface))
         self._attach_child(self.hbox)
