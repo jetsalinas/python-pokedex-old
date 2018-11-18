@@ -1,6 +1,6 @@
 import glooey
 
-from .browser_widgets import *
+from .browser_widgets import LeftBrowser, RightBrowser
 from .widgets import Widget
 
 class Browser(Widget):
